@@ -26,3 +26,9 @@ name varchar(30) not null,
 image blob,
 year int,
 composer varchar(40)
+
+folders table:
+id int primary key,
+root_folder text not null,
+last synced date not null,
+files int
