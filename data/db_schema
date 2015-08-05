@@ -1,1 +1,28 @@
+song table:
+id int primary key
+title varchar(50) not null
+album int foreign key (album)
+genre int foreign key (genre)
+filepath text not null
+id3_version varchar(6)
 
+artist table:
+id int primary key,
+fname varchar(20) not null,
+lname varchar(20)
+
+song_artist table:
+song_id int foreign key(song)
+artist_id int foreign key(artist)
+
+genre table: {table populated before the application installation}
+id int primary key
+genre varchar(20) not null,
+parent int {loose foreign key to self}
+
+album table:
+id int primary key,
+name varchar(30) not null,
+image blob,
+year int,
+composer varchar(40)
