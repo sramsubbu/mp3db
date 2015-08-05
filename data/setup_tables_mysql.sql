@@ -44,5 +44,11 @@ FOREIGN KEY (artist_id)
   REFERENCES artist(id)
   ON DELETE RESTRICT
 );
+
+CREATE TABLE folders (
+id INT PRIMARY KEY AUTO_INCREMENT,
+folder_addr TEXT NOT NULL,
+last_synced DATE NOT NULL
+);
   
   
