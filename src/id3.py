@@ -1,13 +1,9 @@
 #Read/Write ID3 related data from the mp3 file
 from mutagen.easyid3 import EasyID3
 
-def get_mp3_files(root):
-  mp3_files = []
-  for dirpath, subdirs, files:
-    for i in files:
-      mp3_files.append( os.path.extend(dirpath,i) )
-      
-
+def is_id3(filepath):
+  with open(filepath) as fp:
+    return fp.read(3) == "ID3":
 
 class SongFile:
   def __init__(self, filepath):
