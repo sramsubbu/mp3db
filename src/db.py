@@ -80,3 +80,8 @@ class DB:
     cur.execute(query)
   
     return True
+  def update_file(self,song_id, filepath):
+  	cur = self.db.cursor()
+  	query = "UPDATE song SET filepath = '%s' WHERE id = %d;" %(filepath,song_id)
+  	return cur.execute(query)
+  	
