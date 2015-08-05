@@ -5,10 +5,10 @@ unknown_gen_id = 900 #if a genre is not found in the master data, the unknown ge
 
 def get_data_from_config():
   data = {}
-  with open("config") as fp:
-    for line in fp.readline():
-      key,value = line.split(":")
-      data[key] = value
+  with open("../config") as fp:
+    for line in fp.readlines():
+        key,value = line.split(":",1)
+        data[key] = value.strip()
   return data
   
 
@@ -24,7 +24,7 @@ class DB:
     self.db.close()
   
   def add_folder(self,folder):
-  	if not os.path.exists(folder) or if not os.path.isdir(folder):
+  	if not os.path.exists(folder) or not os.path.isdir(folder):
   		return False #cannot add something that does not exist or not a directory
   	now = None #change to get the current date
   	query = "INSERT INTO folder(folder_addr,last_sync) VALUES('%s','%s');" %(folder,now)
@@ -99,4 +99,8 @@ class DB:
   	cur = self.db.cursor()
   	query = "UPDATE song SET filepath = '%s' WHERE id = %d;" %(filepath,song_id)
   	return cur.execute(query)
+
+if __name__ == "__main__":
+    data = get_data_from_config()
+    print data
   	
