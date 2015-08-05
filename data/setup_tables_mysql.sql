@@ -1,0 +1,48 @@
+CREATE TABLE genre (
+id INT PRIMARY KEY,
+genre VARCHAR(30) NOT NULL,
+parent INT);
+
+CREATE TABLE album (
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(30) NOT NULL,
+image BLOB,
+composer VARCHAR(40),
+date INT
+);
+
+CREATE TABLE artist (
+id INT PRIMARY KEY AUTO_INCREMENT,
+fname VARCHAR(20) NOT NULL,
+lname VARCHAR(20)
+);
+
+CREATE TABLE song (
+id INT PRIMARY KEY AUTO_INCREMENT,
+title VARCHAR(50) NOT NULL,
+album INT,
+genre INT,
+filepath TEXT NOT NULL,
+id3_version VARCHAR(6),
+
+FOREIGN KEY (album)
+  REFERENCES album(id)
+  ON DELETE RESTRICT,
+  
+FOREIGN KEY (genre)
+  REFERENCES genre(id)
+  ON DELETE RESTRICT
+);
+
+CREATE TABLE song_artist (
+song_id INT,
+artist_id INT,
+FOREIGN KEY (song_id)
+  REFERENCES song(id)
+  ON DELETE RESTRICT,
+FOREIGN KEY (artist_id)
+  REFERENCES artist(id)
+  ON DELETE RESTRICT
+);
+  
+  
