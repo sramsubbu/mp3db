@@ -22,6 +22,9 @@ def init_app(audio_folders):
     id3_obj = SongFile(mp3_file)
     if not db_obj.add_song(id3_obj.title, id3_obj.artist, id3_obj.album, id3_obj.genre, id3_obj.filepath):
       print mp3_file, "failed"
+  
+  for folder in audio_folder:
+    db_obj.add_folder(folder)
     
     
 if __name__ == "__main__":
