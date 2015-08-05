@@ -1,4 +1,6 @@
 #uses mysql database to store/retreive data
+import MySQLdb
+import os
 unknown_gen_id = 900 #if a genre is not found in the master data, the unknown genre is used.
 
 def get_data_from_config():
@@ -20,6 +22,19 @@ class DB:
     if not self.NO_COMMIT:
       self.db.commit()
     self.db.close()
+  
+  def add_folder(self,folder):
+  	if not os.path.exists(folder) or if not os.path.isdir(folder):
+  		return False #cannot add something that does not exist or not a directory
+  	now = None #change to get the current date
+  	query = "INSERT INTO folder(folder_addr,last_sync) VALUES('%s','%s');" %(folder,now)
+  	cur = self.db.cursor()
+  	cur.execute(query)
+  	
+  def update_folder(self,folder_id, sync_date):
+  	cur =self.db.cursor()
+  	query = "UPDATE folders SET last_sync = '%s' WHERE id = %d;" %(sync_date,folder_id)
+  	cur.execute(query)
     
   def add_artist(self,artist):
     cur = self.db.cursor()
