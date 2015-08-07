@@ -26,8 +26,7 @@ class DB:
   def add_folder(self,folder):
   	if not os.path.exists(folder) or not os.path.isdir(folder):
   		return False #cannot add something that does not exist or not a directory
-  	now = None #change to get the current date
-  	query = "INSERT INTO folder(folder_addr,last_sync) VALUES('%s','%s');" %(folder,now)
+  	query = "INSERT INTO folder(folder_addr,last_sync) VALUES('%s',NOW());" %(folder)
   	cur = self.db.cursor()
   	cur.execute(query)
   	
